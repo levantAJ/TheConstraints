@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'TheConstraints'
-  s.version = '1.2'
+  s.version = '1.0'
   s.summary = 'TheConstraints falicates the Auto Layouts'
   s.description = <<-DESC
   TheConstraints written on Swift 5.0 by levantAJ
@@ -11,6 +11,6 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://github.com/levantAJ/TheConstraints.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.swift_version = '5.0'
-  s.source_files = 'TheConstraints/**/*.{swift}'
+  s.source_files = 'TheConstraints/TheConstraints/*.{swift}'
   
 end
