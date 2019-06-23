@@ -55,6 +55,20 @@ subView.height == view.height - 200
 subView.height == view.height / 2
 ```
 
+### Center:
+
+```swift
+subView.mid == view.mid // centerX + centerY
+subView.centerX == view.centerX
+subView.centerY == view.centerY
+```
+
+### Edges:
+
+```swift
+subView.edges == view.edges // top + trailing + bottom + leading
+```
+
 ## Author
 - [Tai Le](https://github.com/levantAJ)
 
