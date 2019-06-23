@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'TheConstraints'
-  s.version = '1.0'
+  s.version = '1.1'
   s.summary = 'TheConstraints falicates the Auto Layouts'
   s.description = <<-DESC
   TheConstraints written on Swift 5.0 by levantAJ

@@ -21,27 +21,61 @@ extension NSLayoutDimension {
     public static func ==(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalToConstant: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
+    }
+
+    @discardableResult
+    public static func ==(lhs: NSLayoutDimension, rhs: Int) -> NSLayoutConstraint {
+        return lhs == CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func ==(lhs: NSLayoutDimension, rhs: Double) -> NSLayoutConstraint {
+        return lhs == CGFloat(rhs)
     }
 
     @discardableResult
     public static func <=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
         let constraint = lhs.constraint(lessThanOrEqualToConstant: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
+    }
+
+    @discardableResult
+    public static func <=(lhs: NSLayoutDimension, rhs: Int) -> NSLayoutConstraint {
+        return lhs <= CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func <=(lhs: NSLayoutDimension, rhs: Double) -> NSLayoutConstraint {
+        return lhs <= CGFloat(rhs)
     }
 
     @discardableResult
     public static func >=(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
         let constraint = lhs.constraint(greaterThanOrEqualToConstant: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
+    }
+
+    @discardableResult
+    public static func >=(lhs: NSLayoutDimension, rhs: Int) -> NSLayoutConstraint {
+        return lhs >= CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func >=(lhs: NSLayoutDimension, rhs: Double) -> NSLayoutConstraint {
+        return lhs >= CGFloat(rhs)
     }
 
     @discardableResult
     public static func ==(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -49,6 +83,7 @@ extension NSLayoutDimension {
     public static func <=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
         let constraint = lhs.constraint(lessThanOrEqualTo: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -56,6 +91,7 @@ extension NSLayoutDimension {
     public static func >=(lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
         let constraint = lhs.constraint(greaterThanOrEqualTo: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -68,6 +104,7 @@ extension NSLayoutDimension {
             constraint = lhs.constraint(equalTo: rhs.constraint, multiplier: rhs.multiplier)
         }
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -80,6 +117,7 @@ extension NSLayoutDimension {
             constraint = lhs.constraint(lessThanOrEqualTo: rhs.constraint, multiplier: rhs.multiplier)
         }
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -92,6 +130,7 @@ extension NSLayoutDimension {
             constraint = lhs.constraint(greaterThanOrEqualTo: rhs.constraint, multiplier: rhs.multiplier)
         }
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -101,8 +140,28 @@ extension NSLayoutDimension {
     }
 
     @discardableResult
+    public static func + (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+        return lhs + CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func + (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+        return lhs + CGFloat(rhs)
+    }
+
+    @discardableResult
     public static func - (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutDimension {
         return LayoutDimension(constraint: lhs, constant: -rhs, multiplier: 1)
+    }
+
+    @discardableResult
+    public static func - (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+        return lhs - CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func - (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+        return lhs - CGFloat(rhs)
     }
 
     @discardableResult
@@ -111,8 +170,28 @@ extension NSLayoutDimension {
     }
 
     @discardableResult
+    public static func * (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+        return lhs * CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func * (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+        return lhs * CGFloat(rhs)
+    }
+
+    @discardableResult
     public static func / (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutDimension {
         return LayoutDimension(constraint: lhs, constant: nil, multiplier: 1/rhs)
+    }
+
+    @discardableResult
+    public static func / (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+        return lhs / CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func / (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+        return lhs / CGFloat(rhs)
     }
 }
 
@@ -128,6 +207,7 @@ extension NSLayoutXAxisAnchor {
     public static func ==(lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -135,6 +215,7 @@ extension NSLayoutXAxisAnchor {
     public static func ==(lhs: NSLayoutXAxisAnchor, rhs: LayoutXConstraint) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs.constraint, constant: rhs.value)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -142,6 +223,7 @@ extension NSLayoutXAxisAnchor {
     public static func <=(lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
         let constraint = lhs.constraint(lessThanOrEqualTo: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -149,6 +231,23 @@ extension NSLayoutXAxisAnchor {
     public static func <=(lhs: NSLayoutXAxisAnchor, rhs: LayoutXConstraint) -> NSLayoutConstraint {
         let constraint = lhs.constraint(lessThanOrEqualTo: rhs.constraint, constant: rhs.value)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        return constraint
+    }
+
+    @discardableResult
+    public static func >=(lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
+        let constraint = lhs.constraint(greaterThanOrEqualTo: rhs)
+        constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        return constraint
+    }
+
+    @discardableResult
+    public static func >=(lhs: NSLayoutXAxisAnchor, rhs: LayoutXConstraint) -> NSLayoutConstraint {
+        let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.constraint, constant: rhs.value)
+        constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -158,8 +257,28 @@ extension NSLayoutXAxisAnchor {
     }
 
     @discardableResult
+    public static func + (lhs: NSLayoutXAxisAnchor, rhs: Int) -> LayoutXConstraint {
+        return lhs + CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func + (lhs: NSLayoutXAxisAnchor, rhs: Double) -> LayoutXConstraint {
+        return lhs + CGFloat(rhs)
+    }
+
+    @discardableResult
     public static func - (lhs: NSLayoutXAxisAnchor, rhs: CGFloat) -> LayoutXConstraint {
         return LayoutXConstraint(constraint: lhs, value: -rhs)
+    }
+
+    @discardableResult
+    public static func - (lhs: NSLayoutXAxisAnchor, rhs: Int) -> LayoutXConstraint {
+        return lhs - CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func - (lhs: NSLayoutXAxisAnchor, rhs: Double) -> LayoutXConstraint {
+        return lhs - CGFloat(rhs)
     }
 }
 
@@ -175,6 +294,7 @@ extension NSLayoutYAxisAnchor {
     public static func ==(lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -182,6 +302,7 @@ extension NSLayoutYAxisAnchor {
     public static func ==(lhs: NSLayoutYAxisAnchor, rhs: LayoutYConstraint) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs.constraint, constant: rhs.value)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -189,6 +310,7 @@ extension NSLayoutYAxisAnchor {
     public static func <=(lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
         let constraint = lhs.constraint(lessThanOrEqualTo: rhs)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -196,6 +318,23 @@ extension NSLayoutYAxisAnchor {
     public static func <=(lhs: NSLayoutYAxisAnchor, rhs: LayoutYConstraint) -> NSLayoutConstraint {
         let constraint = lhs.constraint(lessThanOrEqualTo: rhs.constraint, constant: rhs.value)
         constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        return constraint
+    }
+
+    @discardableResult
+    public static func >=(lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
+        let constraint = lhs.constraint(greaterThanOrEqualTo: rhs)
+        constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
+        return constraint
+    }
+
+    @discardableResult
+    public static func >=(lhs: NSLayoutYAxisAnchor, rhs: LayoutYConstraint) -> NSLayoutConstraint {
+        let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.constraint, constant: rhs.value)
+        constraint.isActive = true
+        (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
@@ -205,8 +344,28 @@ extension NSLayoutYAxisAnchor {
     }
 
     @discardableResult
+    public static func + (lhs: NSLayoutYAxisAnchor, rhs: Int) -> LayoutYConstraint {
+        return lhs + CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func + (lhs: NSLayoutYAxisAnchor, rhs: Double) -> LayoutYConstraint {
+        return lhs + CGFloat(rhs)
+    }
+
+    @discardableResult
     public static func - (lhs: NSLayoutYAxisAnchor, rhs: CGFloat) -> LayoutYConstraint {
         return LayoutYConstraint(constraint: lhs, value: -rhs)
+    }
+
+    @discardableResult
+    public static func - (lhs: NSLayoutYAxisAnchor, rhs: Int) -> LayoutYConstraint {
+        return lhs - CGFloat(rhs)
+    }
+
+    @discardableResult
+    public static func - (lhs: NSLayoutYAxisAnchor, rhs: Double) -> LayoutYConstraint {
+        return lhs - CGFloat(rhs)
     }
 }
 
@@ -214,62 +373,50 @@ extension NSLayoutYAxisAnchor {
 
 extension UIView {
     open var leading: NSLayoutXAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return leadingAnchor
     }
 
     open var trailing: NSLayoutXAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return trailingAnchor
     }
 
     open var left: NSLayoutXAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return leftAnchor
     }
 
     open var right: NSLayoutXAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return rightAnchor
     }
 
     open var top: NSLayoutYAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return topAnchor
     }
 
     open var bottom: NSLayoutYAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return bottomAnchor
     }
 
     open var width: NSLayoutDimension {
-        translatesAutoresizingMaskIntoConstraints = false
         return widthAnchor
     }
 
     open var height: NSLayoutDimension {
-        translatesAutoresizingMaskIntoConstraints = false
         return heightAnchor
     }
 
     open var centerX: NSLayoutXAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return centerXAnchor
     }
 
     open var centerY: NSLayoutYAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return centerYAnchor
     }
 
     open var firstBaseline: NSLayoutYAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return firstBaselineAnchor
     }
 
     open var lastBaseline: NSLayoutYAxisAnchor {
-        translatesAutoresizingMaskIntoConstraints = false
         return lastBaselineAnchor
     }
 }
