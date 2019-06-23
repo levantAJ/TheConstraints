@@ -369,6 +369,38 @@ extension NSLayoutYAxisAnchor {
     }
 }
 
+// MARK: - LayoutCenterAnchor
+
+public struct LayoutCenterAnchor {
+    let centerX: NSLayoutXAxisAnchor
+    let centerY: NSLayoutYAxisAnchor
+
+    @discardableResult
+    public static func ==(lhs: LayoutCenterAnchor, rhs: LayoutCenterAnchor) -> [NSLayoutConstraint] {
+        let centerX = lhs.centerX == rhs.centerX
+        let centerY = lhs.centerY == rhs.centerY
+        return [centerX, centerY]
+    }
+}
+
+// MARK: - LayoutEdgesAnchor
+
+public struct LayoutEdgesAnchor {
+    let top: NSLayoutYAxisAnchor
+    let trailing: NSLayoutXAxisAnchor
+    let bottom: NSLayoutYAxisAnchor
+    let leading: NSLayoutXAxisAnchor
+
+    @discardableResult
+    public static func ==(lhs: LayoutEdgesAnchor, rhs: LayoutEdgesAnchor) -> [NSLayoutConstraint] {
+        let top = lhs.top == rhs.top
+        let trailing = lhs.trailing == rhs.trailing
+        let bottom = lhs.bottom == rhs.bottom
+        let leading = lhs.leading == rhs.leading
+        return [top, trailing, bottom, leading]
+    }
+}
+
 // MARK: - UIView
 
 extension UIView {
@@ -418,6 +450,14 @@ extension UIView {
 
     open var lastBaseline: NSLayoutYAxisAnchor {
         return lastBaselineAnchor
+    }
+
+    open var center: LayoutCenterAnchor {
+        return LayoutCenterAnchor(centerX: centerX, centerY: centerY)
+    }
+
+    open var edges: LayoutEdgesAnchor {
+        return LayoutEdgesAnchor(top: top, trailing: trailing, bottom: bottom, leading: leading)
     }
 }
 
