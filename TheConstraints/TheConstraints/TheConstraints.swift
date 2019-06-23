@@ -452,7 +452,7 @@ extension UIView {
         return lastBaselineAnchor
     }
 
-    open var center: LayoutCenterAnchor {
+    open var mid: LayoutCenterAnchor {
         return LayoutCenterAnchor(centerX: centerX, centerY: centerY)
     }
 
