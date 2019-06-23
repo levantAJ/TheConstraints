@@ -58,9 +58,10 @@ subView.height == view.height / 2
 ### Center:
 
 ```swift
+subView.centerX == view.centerX + 100
+subView.centerY == view.centerY - 200
+
 subView.mid == view.mid // centerX + centerY
-subView.centerX == view.centerX
-subView.centerY == view.centerY
 ```
 
 ### Edges:
