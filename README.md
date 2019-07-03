@@ -61,13 +61,13 @@ subView.height == view.height / 2
 subView.centerX == view.centerX + 100
 subView.centerY == view.centerY - 200
 
-subView.mid == view.mid // centerX + centerY
+subView.mid == view.mid // centerX & centerY
 ```
 
 ### Edges:
 
 ```swift
-subView.edges == view.edges // top + trailing + bottom + leading
+subView.edges == view.edges // top & trailing & bottom & leading
 ```
 
 ## Author
