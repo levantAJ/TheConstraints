@@ -70,6 +70,12 @@ subView.mid == view.mid // centerX & centerY
 subView.edges == view.edges // top & trailing & bottom & leading
 ```
 
+```swift
+subView.edges == inset(view.edges, 8) // padding all edges are 8 
+subView.edges == inset(view.edges, horizontal: 8) // padding leading and trailing are 8 
+subView.edges == inset(view.edges, vertical: 8) // padding top and bottom are 8 
+```
+
 ## Author
 - [Tai Le](https://github.com/levantAJ)
 
