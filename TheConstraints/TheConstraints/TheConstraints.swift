@@ -10,13 +10,13 @@ import UIKit
 
 // MARK: - NSLayoutDimension
 
-public struct LayoutDimension {
-    let constraint: NSLayoutDimension
-    let constant: CGFloat?
-    let multiplier: CGFloat
-}
-
 extension NSLayoutDimension {
+    public struct Dimension {
+        let constraint: NSLayoutDimension
+        let constant: CGFloat?
+        let multiplier: CGFloat
+    }
+
     @discardableResult
     public static func ==(lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalToConstant: rhs)
@@ -96,7 +96,7 @@ extension NSLayoutDimension {
     }
 
     @discardableResult
-    public static func ==(lhs: NSLayoutDimension, rhs: LayoutDimension) -> NSLayoutConstraint {
+    public static func ==(lhs: NSLayoutDimension, rhs: Dimension) -> NSLayoutConstraint {
         let constraint: NSLayoutConstraint
         if let constant = rhs.constant {
             constraint = lhs.constraint(equalTo: rhs.constraint, multiplier: rhs.multiplier, constant: constant)
@@ -109,7 +109,7 @@ extension NSLayoutDimension {
     }
 
     @discardableResult
-    public static func <=(lhs: NSLayoutDimension, rhs: LayoutDimension) -> NSLayoutConstraint {
+    public static func <=(lhs: NSLayoutDimension, rhs: Dimension) -> NSLayoutConstraint {
         let constraint: NSLayoutConstraint
         if let constant = rhs.constant {
             constraint = lhs.constraint(lessThanOrEqualTo: rhs.constraint, multiplier: rhs.multiplier, constant: constant)
@@ -122,7 +122,7 @@ extension NSLayoutDimension {
     }
 
     @discardableResult
-    public static func >=(lhs: NSLayoutDimension, rhs: LayoutDimension) -> NSLayoutConstraint {
+    public static func >=(lhs: NSLayoutDimension, rhs: Dimension) -> NSLayoutConstraint {
         let constraint: NSLayoutConstraint
         if let constant = rhs.constant {
             constraint = lhs.constraint(greaterThanOrEqualTo: rhs.constraint, multiplier: rhs.multiplier, constant: constant)
@@ -135,74 +135,74 @@ extension NSLayoutDimension {
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutDimension {
-        return LayoutDimension(constraint: lhs, constant: rhs, multiplier: 1)
+    public static func + (lhs: NSLayoutDimension, rhs: CGFloat) -> Dimension {
+        return Dimension(constraint: lhs, constant: rhs, multiplier: 1)
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+    public static func + (lhs: NSLayoutDimension, rhs: Int) -> Dimension {
         return lhs + CGFloat(rhs)
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+    public static func + (lhs: NSLayoutDimension, rhs: Double) -> Dimension {
         return lhs + CGFloat(rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutDimension {
-        return LayoutDimension(constraint: lhs, constant: -rhs, multiplier: 1)
+    public static func - (lhs: NSLayoutDimension, rhs: CGFloat) -> Dimension {
+        return Dimension(constraint: lhs, constant: -rhs, multiplier: 1)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+    public static func - (lhs: NSLayoutDimension, rhs: Int) -> Dimension {
         return lhs - CGFloat(rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+    public static func - (lhs: NSLayoutDimension, rhs: Double) -> Dimension {
         return lhs - CGFloat(rhs)
     }
 
     @discardableResult
-    public static func * (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutDimension {
-        return LayoutDimension(constraint: lhs, constant: nil, multiplier: rhs)
+    public static func * (lhs: NSLayoutDimension, rhs: CGFloat) -> Dimension {
+        return Dimension(constraint: lhs, constant: nil, multiplier: rhs)
     }
 
     @discardableResult
-    public static func * (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+    public static func * (lhs: NSLayoutDimension, rhs: Int) -> Dimension {
         return lhs * CGFloat(rhs)
     }
 
     @discardableResult
-    public static func * (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+    public static func * (lhs: NSLayoutDimension, rhs: Double) -> Dimension {
         return lhs * CGFloat(rhs)
     }
 
     @discardableResult
-    public static func / (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutDimension {
-        return LayoutDimension(constraint: lhs, constant: nil, multiplier: 1/rhs)
+    public static func / (lhs: NSLayoutDimension, rhs: CGFloat) -> Dimension {
+        return Dimension(constraint: lhs, constant: nil, multiplier: 1/rhs)
     }
 
     @discardableResult
-    public static func / (lhs: NSLayoutDimension, rhs: Int) -> LayoutDimension {
+    public static func / (lhs: NSLayoutDimension, rhs: Int) -> Dimension {
         return lhs / CGFloat(rhs)
     }
 
     @discardableResult
-    public static func / (lhs: NSLayoutDimension, rhs: Double) -> LayoutDimension {
+    public static func / (lhs: NSLayoutDimension, rhs: Double) -> Dimension {
         return lhs / CGFloat(rhs)
     }
 }
 
-// MARK: - LayoutXConstraint
-
-public struct LayoutXConstraint {
-    let constraint: NSLayoutXAxisAnchor
-    let value: CGFloat
-}
+// MARK: - NSLayoutXAxisAnchor
 
 extension NSLayoutXAxisAnchor {
+    public struct Constraint {
+        let constraint: NSLayoutXAxisAnchor
+        let constant: CGFloat
+    }
+
     @discardableResult
     public static func ==(lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs)
@@ -212,8 +212,8 @@ extension NSLayoutXAxisAnchor {
     }
 
     @discardableResult
-    public static func ==(lhs: NSLayoutXAxisAnchor, rhs: LayoutXConstraint) -> NSLayoutConstraint {
-        let constraint = lhs.constraint(equalTo: rhs.constraint, constant: rhs.value)
+    public static func ==(lhs: NSLayoutXAxisAnchor, rhs: Constraint) -> NSLayoutConstraint {
+        let constraint = lhs.constraint(equalTo: rhs.constraint, constant: rhs.constant)
         constraint.isActive = true
         (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
@@ -228,8 +228,8 @@ extension NSLayoutXAxisAnchor {
     }
 
     @discardableResult
-    public static func <=(lhs: NSLayoutXAxisAnchor, rhs: LayoutXConstraint) -> NSLayoutConstraint {
-        let constraint = lhs.constraint(lessThanOrEqualTo: rhs.constraint, constant: rhs.value)
+    public static func <=(lhs: NSLayoutXAxisAnchor, rhs: Constraint) -> NSLayoutConstraint {
+        let constraint = lhs.constraint(lessThanOrEqualTo: rhs.constraint, constant: rhs.constant)
         constraint.isActive = true
         (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
@@ -244,52 +244,52 @@ extension NSLayoutXAxisAnchor {
     }
 
     @discardableResult
-    public static func >=(lhs: NSLayoutXAxisAnchor, rhs: LayoutXConstraint) -> NSLayoutConstraint {
-        let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.constraint, constant: rhs.value)
+    public static func >=(lhs: NSLayoutXAxisAnchor, rhs: Constraint) -> NSLayoutConstraint {
+        let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.constraint, constant: rhs.constant)
         constraint.isActive = true
         (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         return constraint
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutXAxisAnchor, rhs: CGFloat) -> LayoutXConstraint {
-        return LayoutXConstraint(constraint: lhs, value: rhs)
+    public static func + (lhs: NSLayoutXAxisAnchor, rhs: CGFloat) -> Constraint {
+        return Constraint(constraint: lhs, constant: rhs)
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutXAxisAnchor, rhs: Int) -> LayoutXConstraint {
+    public static func + (lhs: NSLayoutXAxisAnchor, rhs: Int) -> Constraint {
         return lhs + CGFloat(rhs)
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutXAxisAnchor, rhs: Double) -> LayoutXConstraint {
+    public static func + (lhs: NSLayoutXAxisAnchor, rhs: Double) -> Constraint {
         return lhs + CGFloat(rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutXAxisAnchor, rhs: CGFloat) -> LayoutXConstraint {
-        return LayoutXConstraint(constraint: lhs, value: -rhs)
+    public static func - (lhs: NSLayoutXAxisAnchor, rhs: CGFloat) -> Constraint {
+        return Constraint(constraint: lhs, constant: -rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutXAxisAnchor, rhs: Int) -> LayoutXConstraint {
+    public static func - (lhs: NSLayoutXAxisAnchor, rhs: Int) -> Constraint {
         return lhs - CGFloat(rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutXAxisAnchor, rhs: Double) -> LayoutXConstraint {
+    public static func - (lhs: NSLayoutXAxisAnchor, rhs: Double) -> Constraint {
         return lhs - CGFloat(rhs)
     }
 }
 
-// MARK: - LayoutYConstraint
-
-public struct LayoutYConstraint {
-    let constraint: NSLayoutYAxisAnchor
-    let value: CGFloat
-}
+// MARK: - NSLayoutYAxisAnchor
 
 extension NSLayoutYAxisAnchor {
+    public struct Constraint {
+        let constraint: NSLayoutYAxisAnchor
+        let value: CGFloat
+    }
+
     @discardableResult
     public static func ==(lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs)
@@ -299,7 +299,7 @@ extension NSLayoutYAxisAnchor {
     }
 
     @discardableResult
-    public static func ==(lhs: NSLayoutYAxisAnchor, rhs: LayoutYConstraint) -> NSLayoutConstraint {
+    public static func ==(lhs: NSLayoutYAxisAnchor, rhs: Constraint) -> NSLayoutConstraint {
         let constraint = lhs.constraint(equalTo: rhs.constraint, constant: rhs.value)
         constraint.isActive = true
         (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
@@ -315,7 +315,7 @@ extension NSLayoutYAxisAnchor {
     }
 
     @discardableResult
-    public static func <=(lhs: NSLayoutYAxisAnchor, rhs: LayoutYConstraint) -> NSLayoutConstraint {
+    public static func <=(lhs: NSLayoutYAxisAnchor, rhs: Constraint) -> NSLayoutConstraint {
         let constraint = lhs.constraint(lessThanOrEqualTo: rhs.constraint, constant: rhs.value)
         constraint.isActive = true
         (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
@@ -331,7 +331,7 @@ extension NSLayoutYAxisAnchor {
     }
 
     @discardableResult
-    public static func >=(lhs: NSLayoutYAxisAnchor, rhs: LayoutYConstraint) -> NSLayoutConstraint {
+    public static func >=(lhs: NSLayoutYAxisAnchor, rhs: Constraint) -> NSLayoutConstraint {
         let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.constraint, constant: rhs.value)
         constraint.isActive = true
         (constraint.firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
@@ -339,32 +339,32 @@ extension NSLayoutYAxisAnchor {
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutYAxisAnchor, rhs: CGFloat) -> LayoutYConstraint {
-        return LayoutYConstraint(constraint: lhs, value: rhs)
+    public static func + (lhs: NSLayoutYAxisAnchor, rhs: CGFloat) -> Constraint {
+        return Constraint(constraint: lhs, value: rhs)
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutYAxisAnchor, rhs: Int) -> LayoutYConstraint {
+    public static func + (lhs: NSLayoutYAxisAnchor, rhs: Int) -> Constraint {
         return lhs + CGFloat(rhs)
     }
 
     @discardableResult
-    public static func + (lhs: NSLayoutYAxisAnchor, rhs: Double) -> LayoutYConstraint {
+    public static func + (lhs: NSLayoutYAxisAnchor, rhs: Double) -> Constraint {
         return lhs + CGFloat(rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutYAxisAnchor, rhs: CGFloat) -> LayoutYConstraint {
-        return LayoutYConstraint(constraint: lhs, value: -rhs)
+    public static func - (lhs: NSLayoutYAxisAnchor, rhs: CGFloat) -> Constraint {
+        return Constraint(constraint: lhs, value: -rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutYAxisAnchor, rhs: Int) -> LayoutYConstraint {
+    public static func - (lhs: NSLayoutYAxisAnchor, rhs: Int) -> Constraint {
         return lhs - CGFloat(rhs)
     }
 
     @discardableResult
-    public static func - (lhs: NSLayoutYAxisAnchor, rhs: Double) -> LayoutYConstraint {
+    public static func - (lhs: NSLayoutYAxisAnchor, rhs: Double) -> Constraint {
         return lhs - CGFloat(rhs)
     }
 }
@@ -391,6 +391,11 @@ public struct LayoutEdgesAnchor {
     let bottom: NSLayoutYAxisAnchor
     let leading: NSLayoutXAxisAnchor
 
+    public struct Constraint {
+        let edges: LayoutEdgesAnchor
+        let insets: UIEdgeInsets
+    }
+
     @discardableResult
     public static func ==(lhs: LayoutEdgesAnchor, rhs: LayoutEdgesAnchor) -> [NSLayoutConstraint] {
         let top = lhs.top == rhs.top
@@ -399,6 +404,30 @@ public struct LayoutEdgesAnchor {
         let leading = lhs.leading == rhs.leading
         return [top, trailing, bottom, leading]
     }
+
+    @discardableResult
+    public static func ==(lhs: LayoutEdgesAnchor, rhs: LayoutEdgesAnchor.Constraint) -> [NSLayoutConstraint] {
+        let top = lhs.top == rhs.edges.top + rhs.insets.top
+        let trailing = lhs.trailing == rhs.edges.trailing - rhs.insets.right
+        let bottom = lhs.bottom == rhs.edges.bottom - rhs.insets.bottom
+        let leading = lhs.leading == rhs.edges.leading + rhs.insets.left
+        return [top, trailing, bottom, leading]
+    }
+}
+
+public func inset(_ edges: LayoutEdgesAnchor, _ constant: CGFloat) -> LayoutEdgesAnchor.Constraint {
+    let insets = UIEdgeInsets(top: constant, left: constant, bottom: constant, right: constant)
+    return LayoutEdgesAnchor.Constraint(edges: edges, insets: insets)
+}
+
+public func inset(_ edges: LayoutEdgesAnchor, horizontal constant: CGFloat) -> LayoutEdgesAnchor.Constraint {
+    let insets = UIEdgeInsets(top: 0, left: constant, bottom: 0, right: constant)
+    return LayoutEdgesAnchor.Constraint(edges: edges, insets: insets)
+}
+
+public func inset(_ edges: LayoutEdgesAnchor, vertical constant: CGFloat) -> LayoutEdgesAnchor.Constraint {
+    let insets = UIEdgeInsets(top: constant, left: 0, bottom: constant, right: 0)
+    return LayoutEdgesAnchor.Constraint(edges: edges, insets: insets)
 }
 
 // MARK: - UIView
