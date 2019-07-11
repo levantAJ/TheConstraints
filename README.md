@@ -76,6 +76,13 @@ subView.edges == inset(view.edges, horizontal: 8) // padding leading and trailin
 subView.edges == inset(view.edges, vertical: 8) // padding top and bottom are 8 
 ```
 
+### Updates:
+
+```swift
+let bottomConstraint = subView.bottom == view.bottom
+bottomConstraint.constant = 100
+```
+
 ## Author
 - [Tai Le](https://github.com/levantAJ)
 
