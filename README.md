@@ -71,9 +71,11 @@ subView.edges == view.edges // top & trailing & bottom & leading
 ```
 
 ```swift
-subView.edges == inset(view.edges, 8) // padding all edges are 8 
-subView.edges == inset(view.edges, horizontal: 8) // padding leading and trailing are 8 
-subView.edges == inset(view.edges, vertical: 8) // padding top and bottom are 8 
+subView.edges == inset(view.edges, 8) // as `UIEdgeInsets(top: 8, left: 8, bottom: -8, right: -8)` 
+subView.edges == inset(view.edges, horizontal: 8) // as `UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)` 
+subView.edges == inset(view.edges, vertical: 4) // as `UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)`
+subView.edges == inset(view.edges, horizontal: 8, vertical: 4) // as `UIEdgeInsets(top: 4, left: 8, bottom: -4, right: -8)`
+subView.edges == inset(view.edges, insets: UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)) // as `UIEdgeInsets(top: 4, left: 8, bottom: -4, right: -8)`
 ```
 
 ### Updates:
