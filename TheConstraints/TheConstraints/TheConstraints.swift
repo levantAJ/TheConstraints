@@ -430,6 +430,15 @@ public func inset(_ edges: LayoutEdgesAnchor, vertical constant: CGFloat) -> Lay
     return LayoutEdgesAnchor.Constraint(edges: edges, insets: insets)
 }
 
+public func inset(_ edges: LayoutEdgesAnchor, horizontal: CGFloat, vertical: CGFloat) -> LayoutEdgesAnchor.Constraint {
+    let insets = UIEdgeInsets(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
+    return LayoutEdgesAnchor.Constraint(edges: edges, insets: insets)
+}
+
+public func inset(_ edges: LayoutEdgesAnchor, insets: UIEdgeInsets) -> LayoutEdgesAnchor.Constraint {
+    return LayoutEdgesAnchor.Constraint(edges: edges, insets: insets)
+}
+
 // MARK: - UIView
 
 extension UIView {
