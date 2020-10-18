@@ -18,7 +18,7 @@ There is a way to use TheConstraints in your project:
 
 ### Installation with CocoaPods
 
-```
+```ruby
 pod 'TheConstraints'
 ```
 ### Build Project
