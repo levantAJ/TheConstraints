@@ -19,7 +19,7 @@ There is a way to use TheConstraints in your project:
 ### Installation with CocoaPods
 
 ```ruby
-pod 'TheConstraints'
+pod 'TheConstraints', '1.5'
 ```
 ### Build Project
 
